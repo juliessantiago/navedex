@@ -1,25 +1,26 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('../database/index'); 
+
+//criando coleção para fazer autoincrement 
 
 const naverSchema = new mongoose.Schema({
-    id:{
-        type: int; //integer?
-        require: true; 
-    }, 
     name: {
-        type: String;
-        require: true;
+        type: String,
+        require: true,
     },
     admission: {
-        type: Date; 
-        require: true; 
+        type: Date, 
+        require: true, 
+        default: Date.now, 
     },
     job: {
-        type: String; 
-        require: true; 
+        type: String, 
+        require: true, 
     },
     password: {
-        type: String; 
-        require: true; 
+        type: String, 
+        require: true, 
     }
 
 })
+const  Naver = mongoose.model('naver', naverSchema); 
+module.exports = Naver; 

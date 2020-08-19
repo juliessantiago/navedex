@@ -1,7 +1,11 @@
 const mongoose = require('mongoose'); 
 
-mongoose.connect('mongodb://localhost:27017/navedex', {useMongoClient : true})
+if (mongoose.connect('mongodb://localhost:27017/navedex', 
+    { useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true})){
+        console.log('Database connected'); 
+    } 
 
-mongoose.Promise = global.Promise; 
-
-module.exports = mongoose; 
+module.exports = mongoose ; 
+ 
