@@ -10,7 +10,7 @@ const naverSchema = new mongoose.Schema({
         type: String, 
         require: true, 
         unique: true,
-    }
+    },
     admission: {
         type: Date, 
         require: true, 
@@ -23,7 +23,7 @@ const naverSchema = new mongoose.Schema({
     city: {
         type: String, 
         require: false, 
-    }
+    }, 
     password: {
         type: String, 
         require: true, 
