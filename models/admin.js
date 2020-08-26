@@ -1,7 +1,7 @@
 const mongoose = require('../database/index'); 
 const bcrypt = require('bcryptjs'); 
 
-const naverSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true,
@@ -16,27 +16,19 @@ const naverSchema = new mongoose.Schema({
         require: true, 
         default: Date.now, 
     },
-    job: {
-        type: String, 
-        require: true, 
-    },
-    city: {
-        type: String, 
-        require: false, 
-    }, 
     password: {
         type: String, 
         require: true, 
     }
 
 })
-naverSchema.pre('save', async function(next){
+adminSchema.pre('save', async function(next){
     const encript = await bcrypt.hash(this.password, 10); 
     this.password = encript; 
     next(); 
 })
 
-const  Naver = mongoose.model('naver', naverSchema);
+const  Admin = mongoose.model('admin', adminSchema);
 
 
-module.exports = Naver; 
+module.exports = Admin; 
