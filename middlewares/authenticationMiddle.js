@@ -1,26 +1,29 @@
 module.exports = function(request, response, next){
     
-    const token= request.header.authorization; 
+   const auth= request.headers.authorization;  
     const jwt = require('jsonwebtoken'); 
     const config = require('../config/auth.json'); 
 
+    console.log(auth); 
     //verificando a existência do token
-    if(!token){
-        return response.status(401).send({ error: 'You need a token'})
-    }else{
-        jwt.verify(token, config.code, function(error, decoded) {
-            if (error){
-                return response.status(401).send('token invalid')
-            }else{
-                request.userId = decoded.id; //retornando o id do admin para a requisição inicial 
-                return next(); 
-            }
-        })
+    if(!auth){
+        return response.status(401).send({ error: "You need a token"});
     }
-    //é válido realizar testes no tipo de token recebido antes da verificação final
+
+    const tokenparts = auth.split(" "); 
+    if(!(tokenparts.length == 2)){
+        return response.status(401).send({ error: "Token doesn't have 2 parts"});
+    }
+    const [pre, token ] = tokenparts; 
+    if(!/^Bearer$/i.test(pre)){
+        return response.status(401).send({ error: "Wrong format"});
+    }
     
-    
-
-
-
+    jwt.verify(token, config.code, function(error, decoded){
+        if(error){
+            return response.status(401).send({ error: "Invalid token"});
+        }
+        request.userOk.id = decoded.id; 
+        return next(); 
+    })
 }; 

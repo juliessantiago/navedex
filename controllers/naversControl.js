@@ -4,7 +4,7 @@ const authenticationMiddle = require('../middlewares/authenticationMiddle');
 
 router.use(authenticationMiddle); 
 router.get('/index', (request, response) => {
-    response.send('listando todos os navers'); 
+    response.send('ok'); 
 }); 
 
 
