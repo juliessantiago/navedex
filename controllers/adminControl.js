@@ -3,7 +3,7 @@ const  admin = require('../models/admin'); //naver = objeto do Mongoose
 const bcrypt = require('bcryptjs'); 
 const jwt = require('jsonwebtoken'); 
 const router = express.Router(); //Classe para criar manipuladores de rota 
-//alterar depois para uso do Consign 
+
 const config = require('../config/auth.json'); //arquivo que possui a identificação dessa API
 
 router.post('/register', async (request, response) => {

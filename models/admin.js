@@ -1,5 +1,7 @@
 const mongoose = require('../database/index'); 
 const bcrypt = require('bcryptjs'); 
+//admins controlam navers e projetos 
+//navers participam de projetos
 
 const adminSchema = new mongoose.Schema({
     name: {
@@ -10,11 +12,6 @@ const adminSchema = new mongoose.Schema({
         type: String, 
         require: true, 
         unique: true,
-    },
-    admission: {
-        type: Date, 
-        require: true, 
-        default: Date.now, 
     },
     password: {
         type: String, 

@@ -4,21 +4,21 @@ module.exports = function(request, response, next){
    const auth= request.headers.authorization;  
     
    if(!auth){
-       return response.status(401).send({error:  "No token provided"}); 
+       return response.status(401).send({error:  "User doesn't have a token"}); 
    }
 
-   /*const parts = auth.split(' '); 
+   /* const parts = auth.split(' '); 
 
    if(!(parts.length === 2)){
-       return response.status(401).send({error: 'Error'}); 
+       return response.status(401).send({error: 'Missing parts'}); 
    }
 
    const [pre, token] = parts; 
 
    if (!/^Bearer$/i.test(pre)){
-      return response.status(401).send({error: 'token malformated'}); 
+      return response.status(401).send({error: 'Incorrect format'}); 
    }
-*/ 
+   */ 
    jwt.verify(auth, config.code, function (error, decoded){
        if(error){
            return response.status(401).send({error: 'invalid token'})
