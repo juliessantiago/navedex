@@ -34,15 +34,14 @@ const naverSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'admin', 
         require: true,
-    } //cada naver é supervisionado por somente um administrador
-
+    }, //cada naver é supervisionado por somente um administrador
+    projects: [{     
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'project', 
+        require: true,
+    }], //Um naver pode participar em mais de um project
 })
-adminSchema.pre('save', async function(next){
-    const encript = await bcrypt.hash(this.password, 5); 
-    this.password = encript; 
-    next(); 
-})
 
-const  Naver = mongoose.model('naver', adminSchema); //nome pelo qual será referenciado
+const  Naver = mongoose.model('naver', naverSchema); //nome pelo qual será referenciado
 
 module.exports = Naver; 

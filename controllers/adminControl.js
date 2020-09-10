@@ -8,10 +8,9 @@ const config = require('../config/auth.json'); //arquivo que possui a identifica
 
 router.post('/register', async (request, response) => {
    try{
-     //Testar depois a  existência única do email
-      const objAdmin = await admin.create(request.body)
-
+      const objAdmin = await admin.create(request.body); 
       return response.send({objAdmin}); 
+      //TESTAR SE EMAIL É ÚNICO!! 
    }
    catch(error) {
      ("Erro: Não foi possível registrar"); 
@@ -34,7 +33,7 @@ router.post('/authenticate', async (request, response) =>{
      
      userOK.password = undefined; //impedindo exibição da senha 
      const token = jwt.sign({id: userOK.id}, config.code, {expiresIn: 3600})
-     //primeiro parâmetro: id do usuário 
+     //primeiro parâmetro: id do usuário  
      //o segundo parâmetro é hash criado para identificar esta API
      //hash foi criado no arquivo auth.json
      //terceiro parâmetro: expiresIn = define tempo de validade do token em seg 

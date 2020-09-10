@@ -2,7 +2,7 @@ const mongoose = require('../database/index');
 const bcrypt = require('bcryptjs'); 
 //navers participam de projetos
 
-const naverSchema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema({
     title: {
         type: String,
         require: true,
@@ -16,14 +16,8 @@ const naverSchema = new mongoose.Schema({
         type: String, 
         require: false,
     }, 
-    navers[{ 
-       type: mongoose.Schema.Types.ObjectId, 
-        ref: 'naver', 
-        require: true,
-    }]//cada projeto é realiado por mais de um naver
-
 })
 
-const  Project = mongoose.model('project', adminSchema);
+const  Project = mongoose.model('project', projectSchema);
 
 module.exports = Project; 

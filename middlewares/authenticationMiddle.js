@@ -4,7 +4,7 @@ module.exports = function(request, response, next){
    const auth= request.headers.authorization;  
     
    if(!auth){
-       return response.status(401).send({error:  "User doesn't have a token"}); 
+       return response.status(401).send({error : 'Restrict area. Token not provided'}); 
    }
 
    /* const parts = auth.split(' '); 
